@@ -3,19 +3,22 @@ WORKDIR /app
 COPY . ./
 # This is where one could build the application code as well.
 
-
 FROM alpine:latest as tailscale
 WORKDIR /app
 COPY . ./
-ENV TSFILE=tailscale_1.24.2_amd64.tgz
+ENV TSFILE=tailscale_1.26.1_amd64.tgz
 RUN wget https://pkgs.tailscale.com/stable/${TSFILE} && tar xzf ${TSFILE} --strip-components=1
 COPY . ./
 
 # https://docs.docker.com/develop/develop-images/multistage-build/#use-multi-stage-builds
+ENV TZ=UTC
 FROM alpine:latest
-RUN apk update && apk add ca-certificates iptables git curl nodejs npm
+RUN apk update && apk add ca-certificates iptables git curl nodejs npm openrc busybox-initscripts tzdata
 RUN apk add --update npm
 RUN rm -rf /var/cache/apk/*
+RUN cp /usr/share/zoneinfo/${TZ} /etc/localtime
+RUN echo "$TZ" >  /etc/timezone
+RUN apk del tzdata
 
 # Copy binary to production image
 COPY --from=builder /app/start.sh /app/start.sh
