@@ -7,18 +7,16 @@ cd /root/uptime-kuma
 if [ -z "$hc" ]
 then
       echo "\$hc is NULL"
-    npm run setup
-    # Start Server
-    node server/server.js      
 else
       echo "\$hc is NOT NULL"
-
-    cat > /etc/periodic/15min/hc <<EOF
-    curl -m 10 --retry 5 $hc
-    EOF
-    chmod +x /etc/periodic/15min/hc
-    npm run setup
-    # Start Server
-    node server/server.js
+      echo "#!/bin/sh"  >> /etc/periodic/15min/hc
+      echo "curl -m 10 --retry 5 $hc" >> /etc/periodic/15min/hc
+      chmod a+x /etc/periodic/15min/hc
+      rc-status
+      touch /run/openrc/softlevel
+      rc-service crond start
 fi
 
+npm run setup
+# Start Server
+node server/server.js
