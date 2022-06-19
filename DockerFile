@@ -27,7 +27,7 @@ RUN git clone https://github.com/louislam/uptime-kuma.git
 RUN rm -r /root/uptime-kuma/data/
 
 #cloudflared
-RUN wget https://github.com/cloudflare/cloudflared/releases/download/2022.5.3/cloudflared-linux-amd64 -O /usr/local/bin/cloudflared
+RUN wget https://github.com/cloudflare/cloudflared/releases/download/2022.6.2/cloudflared-linux-amd64 -O /usr/local/bin/cloudflared
 RUN chmod +x /usr/local/bin/cloudflared
 
 RUN chmod +x /app/start.sh
