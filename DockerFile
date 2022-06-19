@@ -13,7 +13,7 @@ COPY . ./
 
 # https://docs.docker.com/develop/develop-images/multistage-build/#use-multi-stage-builds
 FROM alpine:latest
-RUN apk update && apk add ca-certificates iptables git curl nodejs npm
+RUN apk update && apk add ca-certificates iptables git curl nodejs npm openrc busybox-initscripts
 RUN apk add --update npm
 RUN rm -rf /var/cache/apk/*
 
