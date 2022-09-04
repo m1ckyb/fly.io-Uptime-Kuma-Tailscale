@@ -1,8 +1,8 @@
 # fly.io-Uptime-Kuma-Tailscale
-fly.io Uptime Kuma with a Tailscale VPN 
+fly.io Uptime Kuma with a Tailscale VPN (depreciated)
 
 ```
-NO LONER WORKS WITH THE LATEST VERSION OF UPTIME-KUMA
+NO LONER WORKS WITH THE LATEST VERSION OF UPTIME-KUMA (DEPRECIATED)
 ```
 
 ```
