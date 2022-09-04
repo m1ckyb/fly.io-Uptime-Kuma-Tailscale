@@ -2,6 +2,10 @@
 fly.io Uptime Kuma with a Tailscale VPN 
 
 ```
+NO LONER WORKS WITH THE LATEST VERSION OF UPTIME-KUMA
+```
+
+```
 flyctl secrets set TAILSCALE_AUTHKEY="tskey-***"
 ```
 
